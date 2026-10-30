@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Update with your live domain or GitHub Pages URL after deployment:
+Sitemap: https://kha6lid0-cmd.github.io/Lumixa/sitemap.xml

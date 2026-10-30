@@ -1,0 +1,6 @@
+{
+  "name": "LUMIXA – Free All-in-One Digital Tools Platform",
+  "description": "Free browser-based digital tools to compress, resize, and convert images, merge and split PDFs, format text, validate JSON, and generate QR codes in English and Arabic.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
