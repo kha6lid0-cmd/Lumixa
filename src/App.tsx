@@ -46,6 +46,11 @@ function setMetaContent(selector: string, content: string) {
   if (el) el.setAttribute('content', content);
 }
 
+function setLinkHref(selector: string, href: string) {
+  const el = document.querySelector(selector);
+  if (el) el.setAttribute('href', href);
+}
+
 export default function App() {
   const [lang, setLang] = useState<Language>(() => {
     try {
@@ -105,13 +110,21 @@ export default function App() {
       : activePage
       ? activePage.description
       : t.siteMetaDescription;
+    const publicUrl = 'https://lumixa-99t.pages.dev';
+    const canonicalUrl = activeTool
+      ? `${publicUrl}/tools/${activeTool.id}/`
+      : activePageId
+      ? `${publicUrl}/#/${`page/${activePageId}`}`
+      : `${publicUrl}/`;
 
     document.title = pageTitle;
     setMetaContent('meta[name="description"]', pageDesc);
     setMetaContent('meta[property="og:title"]', pageTitle);
     setMetaContent('meta[property="og:description"]', pageDesc);
+    setMetaContent('meta[property="og:url"]', canonicalUrl);
     setMetaContent('meta[name="twitter:title"]', pageTitle);
     setMetaContent('meta[name="twitter:description"]', pageDesc);
+    setLinkHref('link[rel="canonical"]', canonicalUrl);
   }, [lang, activeToolId, activePageId, t]);
 
   const navigateHome = () => {

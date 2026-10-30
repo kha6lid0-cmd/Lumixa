@@ -25,7 +25,7 @@ export function QrGeneratorTool({ lang }: Props) {
   const isAr = lang === Language.AR;
   const { reportStatus } = useWorkspaceA11y();
 
-  const [content, setContent] = useState<string>('https://lumixa.github.io');
+  const [content, setContent] = useState<string>('https://lumixa-99t.pages.dev');
   const [size, setSize] = useState<number>(512);
   const [ecLevel, setEcLevel] = useState<ErrorCorrection>('M');
   const [margin, setMargin] = useState<number>(2);
@@ -104,7 +104,7 @@ export function QrGeneratorTool({ lang }: Props) {
             <div className="flex items-center gap-2 text-xs">
               <button
                 type="button"
-                onClick={() => setContent('https://lumixa.github.io')}
+                onClick={() => setContent('https://lumixa-99t.pages.dev')}
                 className="text-violet-700 hover:underline"
               >
                 {isAr ? 'مثال رابط' : 'Sample URL'}
