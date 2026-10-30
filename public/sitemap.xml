@@ -1,78 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Replace https://kha6lid0-cmd.github.io/Lumixa with your custom domain or GitHub Pages repository URL -->
+<!-- Cloudflare Pages production sitemap for lumixa-99t.pages.dev -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://kha6lid0-cmd.github.io/Lumixa/</loc>
+    <loc>https://lumixa-99t.pages.dev/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kha6lid0-cmd.github.io/Lumixa/#/tool/image-compressor</loc>
+    <loc>https://lumixa-99t.pages.dev/#/tool/image-compressor</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://kha6lid0-cmd.github.io/Lumixa/#/tool/image-resizer</loc>
+    <loc>https://lumixa-99t.pages.dev/#/tool/image-resizer</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://kha6lid0-cmd.github.io/Lumixa/#/tool/image-converter</loc>
+    <loc>https://lumixa-99t.pages.dev/#/tool/image-converter</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://kha6lid0-cmd.github.io/Lumixa/#/tool/images-to-pdf</loc>
+    <loc>https://lumixa-99t.pages.dev/#/tool/images-to-pdf</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://kha6lid0-cmd.github.io/Lumixa/#/tool/qr-generator</loc>
+    <loc>https://lumixa-99t.pages.dev/#/tool/qr-generator</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://kha6lid0-cmd.github.io/Lumixa/#/tool/pdf-merger</loc>
+    <loc>https://lumixa-99t.pages.dev/#/tool/pdf-merger</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://kha6lid0-cmd.github.io/Lumixa/#/tool/pdf-splitter</loc>
+    <loc>https://lumixa-99t.pages.dev/#/tool/pdf-splitter</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://kha6lid0-cmd.github.io/Lumixa/#/tool/word-counter</loc>
+    <loc>https://lumixa-99t.pages.dev/#/tool/word-counter</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kha6lid0-cmd.github.io/Lumixa/#/tool/text-formatter</loc>
+    <loc>https://lumixa-99t.pages.dev/#/tool/text-formatter</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kha6lid0-cmd.github.io/Lumixa/#/tool/json-formatter</loc>
+    <loc>https://lumixa-99t.pages.dev/#/tool/json-formatter</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://kha6lid0-cmd.github.io/Lumixa/#/page/privacy-policy</loc>
+    <loc>https://lumixa-99t.pages.dev/#/page/privacy-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://kha6lid0-cmd.github.io/Lumixa/#/page/terms-of-use</loc>
+    <loc>https://lumixa-99t.pages.dev/#/page/terms-of-use</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://kha6lid0-cmd.github.io/Lumixa/#/page/about-us</loc>
+    <loc>https://lumixa-99t.pages.dev/#/page/about-us</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://kha6lid0-cmd.github.io/Lumixa/#/page/contact-us</loc>
+    <loc>https://lumixa-99t.pages.dev/#/page/contact-us</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>

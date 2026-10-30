@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-# Update with your live domain or GitHub Pages URL after deployment:
-Sitemap: https://kha6lid0-cmd.github.io/Lumixa/sitemap.xml
+# Cloudflare Pages production URL:
+Sitemap: https://lumixa-99t.pages.dev/sitemap.xml
