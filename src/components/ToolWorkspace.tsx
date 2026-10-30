@@ -94,12 +94,26 @@ export function ToolWorkspace({
     return () => window.clearTimeout(settleTimer);
   }, [a11yStatus.isBusy, a11yStatus.actionStatus, isAr]);
 
+  useEffect(() => {
+    if (!a11yStatus.isBusy) return;
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      event.preventDefault();
+      event.returnValue = isAr
+        ? 'تتم معالجة ملفاتك الآن. هل تريد مغادرة الصفحة؟'
+        : 'Your files are still processing. Are you sure you want to leave?';
+      return event.returnValue;
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [a11yStatus.isBusy, isAr]);
+
   const reportStatus = useCallback((next: WorkspaceA11yStatus) => {
     setA11yStatus((prev) => {
       if (
         prev.fileStatus === next.fileStatus &&
         prev.actionStatus === next.actionStatus &&
-        prev.isBusy === next.isBusy
+        prev.isBusy === next.isBusy &&
+        prev.progress === next.progress
       ) {
         return prev;
       }
@@ -194,17 +208,25 @@ export function ToolWorkspace({
           aria-busy={Boolean(a11yStatus.isBusy)}
           className="lumixa-tool-surface relative overflow-hidden bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-8"
         >
-          {/* Subtle Top-Edge Indeterminate Progress Bar (Zero CLS) */}
+          {/* Top-edge progress bar (determinate when a tool reports progress) */}
           <div
             role="progressbar"
             aria-label={busyLabel}
             aria-busy={isShowingProgress}
+            aria-valuemin={a11yStatus.progress === undefined ? undefined : 0}
+            aria-valuemax={a11yStatus.progress === undefined ? undefined : 100}
+            aria-valuenow={a11yStatus.progress === undefined ? undefined : a11yStatus.progress}
             aria-hidden={!isShowingProgress}
             className={`pointer-events-none absolute inset-x-0 top-0 h-1 overflow-hidden bg-violet-100/80 transition-opacity duration-200 ${
               isShowingProgress ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            <div className="h-full w-2/5 rounded-full bg-gradient-to-r from-violet-500 via-violet-700 to-violet-500 animate-lumixa-indeterminate" />
+            <div
+              className={`h-full rounded-full bg-gradient-to-r from-violet-500 via-violet-700 to-violet-500 ${
+                a11yStatus.progress === undefined ? 'w-2/5 animate-lumixa-indeterminate' : ''
+              }`}
+              style={a11yStatus.progress === undefined ? undefined : { width: `${a11yStatus.progress}%` }}
+            />
           </div>
 
           <WorkspaceA11yProvider value={contextValue}>
@@ -224,7 +246,7 @@ export function ToolWorkspace({
               }`}
             >
               <Loader2 className="w-3.5 h-3.5 animate-spin shrink-0" aria-hidden="true" />
-              <span>{busyLabel}</span>
+              <span>{busyLabel}{a11yStatus.progress !== undefined ? ` · ${a11yStatus.progress}%` : ''}</span>
             </div>
           </div>
         </section>

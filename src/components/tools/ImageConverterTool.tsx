@@ -99,10 +99,16 @@ export function ImageConverterTool({ lang }: Props) {
     }
 
     setIsConverting(true);
+    reportStatus({
+      fileStatus: isAr ? `جاري تجهيز ${valid.length} ملفات` : `Preparing ${valid.length} files`,
+      actionStatus: isAr ? 'لا تغلق الصفحة أثناء المعالجة' : 'Please keep this page open while processing',
+      isBusy: true,
+      progress: 0,
+    });
     try {
       await yieldToPaint();
       const nextItems: ConvertedItem[] = [];
-      for (const file of valid) {
+      for (const [index, file] of valid.entries()) {
         let inputFile = file;
         if (/\.(heic|heif)$/i.test(file.name) || ['image/heic', 'image/heif'].includes(file.type)) {
           const converted = await heic2any({ blob: file, toType: 'image/jpeg', quality: 0.95 });
@@ -118,12 +124,19 @@ export function ImageConverterTool({ lang }: Props) {
           outputBlob: res.blob,
           previewUrl: res.previewUrl,
         });
+        reportStatus({
+          fileStatus: isAr ? `تمت معالجة ${index + 1} من ${valid.length}` : `Processed ${index + 1} of ${valid.length}`,
+          actionStatus: isAr ? 'لا تغلق الصفحة أثناء المعالجة' : 'Please keep this page open while processing',
+          isBusy: true,
+          progress: Math.round(((index + 1) / valid.length) * 100),
+        });
       }
       setItems((prev) => [...prev, ...nextItems]);
     } catch {
       setError(
         isAr ? 'حدث خطأ أثناء تحويل إحدى الصور.' : 'An error occurred while converting an image.'
       );
+      reportStatus({ fileStatus: isAr ? 'تعذر معالجة إحدى الصور' : 'Could not process an image', actionStatus: '', isBusy: false, progress: 0 });
     } finally {
       setIsConverting(false);
     }
@@ -139,12 +152,18 @@ export function ImageConverterTool({ lang }: Props) {
       try {
         await yieldToPaint();
         const updated: ConvertedItem[] = [];
-        for (const item of items) {
+        for (const [index, item] of items.entries()) {
           const res = await convertSingleFile(item.originalFile, targetMime, quality, bgColor);
           updated.push({
             ...item,
             outputBlob: res.blob,
             previewUrl: res.previewUrl,
+          });
+          reportStatus({
+            fileStatus: isAr ? `جاري تحديث ${index + 1} من ${items.length}` : `Updating ${index + 1} of ${items.length}`,
+            actionStatus: isAr ? 'لا تغلق الصفحة أثناء المعالجة' : 'Please keep this page open while processing',
+            isBusy: true,
+            progress: Math.round(((index + 1) / items.length) * 100),
           });
         }
         if (!cancelled) {

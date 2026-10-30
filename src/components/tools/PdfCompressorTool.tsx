@@ -18,16 +18,18 @@ export function PdfCompressorTool({ lang }: Props) {
 
   const compress = async (selected: File) => {
     setFile(selected); setResult(null); setError(''); setBusy(true);
+    reportStatus({ fileStatus: isAr ? `جاري قراءة ${selected.name}` : `Reading ${selected.name}`, actionStatus: isAr ? 'لا تغلق الصفحة أثناء المعالجة' : 'Please keep this page open while processing', isBusy: true, progress: 0 });
     try {
       const source = await PDFDocument.load(await selected.arrayBuffer(), { ignoreEncryption: false });
+      reportStatus({ fileStatus: isAr ? 'تمت قراءة الملف' : 'PDF loaded', actionStatus: isAr ? 'جاري تحسين البنية الداخلية' : 'Optimizing internal structure', isBusy: true, progress: 50 });
       const bytes = await source.save({ useObjectStreams: true, addDefaultPage: false, objectsPerTick: 50 });
       const safeBytes = new Uint8Array(bytes);
       const blob = new Blob([safeBytes.buffer as ArrayBuffer], { type: 'application/pdf' });
       setResult(blob);
-      reportStatus({ fileStatus: isAr ? `تم تحسين ${selected.name}` : `${selected.name} optimized`, actionStatus: isAr ? 'الملف جاهز للتحميل' : 'Optimized PDF ready', isBusy: false });
+      reportStatus({ fileStatus: isAr ? `تم تحسين ${selected.name}` : `${selected.name} optimized`, actionStatus: isAr ? 'الملف جاهز للتحميل' : 'Optimized PDF ready', isBusy: false, progress: 100 });
     } catch {
       setError(isAr ? 'تعذر ضغط الملف. قد يكون محمياً أو تالفاً.' : 'Could not optimize this PDF. It may be encrypted or corrupted.');
-      reportStatus({ fileStatus: isAr ? 'تعذر تحسين ملف PDF' : 'Could not optimize PDF', actionStatus: '', isBusy: false });
+      reportStatus({ fileStatus: isAr ? 'تعذر تحسين ملف PDF' : 'Could not optimize PDF', actionStatus: '', isBusy: false, progress: 0 });
     } finally { setBusy(false); }
   };
 

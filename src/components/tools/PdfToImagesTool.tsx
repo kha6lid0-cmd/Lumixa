@@ -25,6 +25,7 @@ export function PdfToImagesTool({ lang }: Props) {
 
   const convert = async (file: File) => {
     setBusy(true); setError(''); setPages([]); setFileName(file.name);
+    reportStatus({ fileStatus: isAr ? `جاري قراءة ${file.name}` : `Reading ${file.name}`, actionStatus: isAr ? 'جاري تجهيز الصفحات' : 'Preparing pages', isBusy: true, progress: 0 });
     try {
       const pdf = await pdfjsLib.getDocument({ data: await file.arrayBuffer() }).promise;
       const output: { page: number; url: string; blob: Blob }[] = [];
@@ -37,12 +38,13 @@ export function PdfToImagesTool({ lang }: Props) {
         const blob = await new Promise<Blob>((resolve, reject) => canvas.toBlob((value) => value ? resolve(value) : reject(new Error('Canvas export failed')), `image/${format}`, format === 'jpeg' ? 0.92 : undefined));
         output.push({ page: index, url: URL.createObjectURL(blob), blob });
         page.cleanup();
+        reportStatus({ fileStatus: isAr ? `جاري تحويل الصفحة ${index} من ${pdf.numPages}` : `Converting page ${index} of ${pdf.numPages}`, actionStatus: isAr ? 'لا تغلق الصفحة أثناء المعالجة' : 'Please keep this page open while processing', isBusy: true, progress: Math.round((index / pdf.numPages) * 100) });
       }
       setPages(output);
-      reportStatus({ fileStatus: isAr ? `تم تحويل ${output.length} صفحة` : `${output.length} pages converted`, actionStatus: isAr ? 'الصور جاهزة للتحميل' : 'Images ready to download', isBusy: false });
+      reportStatus({ fileStatus: isAr ? `تم تحويل ${output.length} صفحة` : `${output.length} pages converted`, actionStatus: isAr ? 'الصور جاهزة للتحميل' : 'Images ready to download', isBusy: false, progress: 100 });
     } catch {
       setError(isAr ? 'تعذر قراءة ملف PDF. تأكد أنه غير محمي أو تالف.' : 'Could not read this PDF. Make sure it is not encrypted or corrupted.');
-      reportStatus({ fileStatus: isAr ? 'تعذر تحويل ملف PDF' : 'Could not convert PDF', actionStatus: '', isBusy: false });
+      reportStatus({ fileStatus: isAr ? 'تعذر تحويل ملف PDF' : 'Could not convert PDF', actionStatus: '', isBusy: false, progress: 0 });
     } finally { setBusy(false); }
   };
 

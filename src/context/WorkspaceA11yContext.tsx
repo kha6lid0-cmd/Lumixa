@@ -7,6 +7,8 @@ export interface WorkspaceA11yStatus {
   actionStatus?: string;
   /** True while asynchronous compression, conversion, or PDF generation is running */
   isBusy?: boolean;
+  /** Optional determinate progress percentage from 0 to 100 */
+  progress?: number;
 }
 
 interface WorkspaceA11yContextValue {
