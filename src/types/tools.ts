@@ -20,6 +20,7 @@ export enum ToolId {
   PDF_MERGER = 'pdf-merger',
   PDF_SPLITTER = 'pdf-splitter',
   PDF_TO_IMAGES = 'pdf-to-images',
+  PDF_COMPRESSOR = 'pdf-compressor',
   WORD_COUNTER = 'word-counter',
   TEXT_FORMATTER = 'text-formatter',
   JSON_FORMATTER = 'json-formatter',

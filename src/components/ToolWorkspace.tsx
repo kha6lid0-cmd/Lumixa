@@ -14,6 +14,7 @@ import { JsonFormatterTool } from './tools/JsonFormatterTool';
 import { PdfMergerTool } from './tools/PdfMergerTool';
 import { PdfSplitterTool } from './tools/PdfSplitterTool';
 import { PdfToImagesTool } from './tools/PdfToImagesTool';
+import { PdfCompressorTool } from './tools/PdfCompressorTool';
 import { PasswordGeneratorTool } from './tools/PasswordGeneratorTool';
 import { QrGeneratorTool } from './tools/QrGeneratorTool';
 import { TextFormatterTool } from './tools/TextFormatterTool';
@@ -35,6 +36,7 @@ const FILE_BASED_TOOLS = new Set<ToolId>([
   ToolId.PDF_MERGER,
   ToolId.PDF_SPLITTER,
   ToolId.PDF_TO_IMAGES,
+  ToolId.PDF_COMPRESSOR,
 ]);
 
 export function ToolWorkspace({
@@ -129,6 +131,8 @@ export function ToolWorkspace({
         return <PdfSplitterTool lang={lang} />;
       case ToolId.PDF_TO_IMAGES:
         return <PdfToImagesTool lang={lang} />;
+      case ToolId.PDF_COMPRESSOR:
+        return <PdfCompressorTool lang={lang} />;
       case ToolId.WORD_COUNTER:
         return <WordCounterTool lang={lang} />;
       case ToolId.TEXT_FORMATTER:

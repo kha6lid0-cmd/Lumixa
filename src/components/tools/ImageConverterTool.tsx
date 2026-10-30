@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { AlertCircle, Download, RefreshCw, Sparkles, Trash2, Upload } from 'lucide-react';
+import JSZip from 'jszip';
+import heic2any from 'heic2any';
 import { useWorkspaceA11y } from '../../context/WorkspaceA11yContext';
 import { Language } from '../../types/tools';
 import {
@@ -83,12 +85,15 @@ export function ImageConverterTool({ lang }: Props) {
     if (arr.length === 0) return;
     setError(null);
 
-    const valid = arr.filter((f) => ['image/png', 'image/jpeg', 'image/webp'].includes(f.type));
+    const valid = arr.filter((f) =>
+      ['image/png', 'image/jpeg', 'image/webp', 'image/heic', 'image/heif'].includes(f.type) ||
+      /\.(heic|heif)$/i.test(f.name)
+    );
     if (valid.length === 0) {
       setError(
         isAr
-          ? 'يرجى رفع ملفات صور مدعومة (PNG أو JPG أو WebP).'
-          : 'Please select supported image files (PNG, JPG, or WebP).'
+          ? 'يرجى رفع ملفات صور مدعومة (PNG أو JPG أو WebP أو HEIC).'
+          : 'Please select supported image files (PNG, JPG, WebP, or HEIC).'
       );
       return;
     }
@@ -98,10 +103,16 @@ export function ImageConverterTool({ lang }: Props) {
       await yieldToPaint();
       const nextItems: ConvertedItem[] = [];
       for (const file of valid) {
-        const res = await convertSingleFile(file, targetMime, quality, bgColor);
+        let inputFile = file;
+        if (/\.(heic|heif)$/i.test(file.name) || ['image/heic', 'image/heif'].includes(file.type)) {
+          const converted = await heic2any({ blob: file, toType: 'image/jpeg', quality: 0.95 });
+          const blob = Array.isArray(converted) ? converted[0] : converted;
+          inputFile = new File([blob], `${stripExtension(file.name)}.jpg`, { type: 'image/jpeg' });
+        }
+        const res = await convertSingleFile(inputFile, targetMime, quality, bgColor);
         nextItems.push({
           id: `${file.name}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
-          originalFile: file,
+          originalFile: inputFile,
           width: res.width,
           height: res.height,
           outputBlob: res.blob,
@@ -163,6 +174,22 @@ export function ImageConverterTool({ lang }: Props) {
     triggerBlobDownload(item.outputBlob, `${stripExtension(item.originalFile.name)}.${extLabel}`);
   };
 
+  const handleDownloadZip = async () => {
+    const ready = items.filter((item) => item.outputBlob);
+    if (ready.length < 2) return;
+    const zip = new JSZip();
+    ready.forEach((item) => {
+      zip.file(`${stripExtension(item.originalFile.name)}.${extLabel}`, item.outputBlob!);
+    });
+    const blob = await zip.generateAsync({ type: 'blob' });
+    triggerBlobDownload(blob, `lumixa-converted-images-${extLabel}.zip`);
+    reportStatus({
+      fileStatus: isAr ? `${ready.length} ملفات جاهزة` : `${ready.length} files ready`,
+      actionStatus: isAr ? 'تم تنزيل النتائج في ملف ZIP' : 'Results downloaded as a ZIP file',
+      isBusy: false,
+    });
+  };
+
   const handleClearAll = () => {
     items.forEach((i) => URL.revokeObjectURL(i.previewUrl));
     setItems([]);
@@ -171,8 +198,8 @@ export function ImageConverterTool({ lang }: Props) {
   const uploadAriaLabel =
     items.length === 0
       ? isAr
-        ? 'لم يتم اختيار ملف — اختر صور PNG أو JPG أو WebP للتحويل'
-        : 'No file selected — Select PNG, JPG, or WebP images to convert'
+        ? 'لم يتم اختيار ملف — اختر صور PNG أو JPG أو WebP أو HEIC للتحويل'
+        : 'No file selected — Select PNG, JPG, WebP, or HEIC images to convert'
       : items.length === 1
       ? isAr
         ? `الملف ${items[0].originalFile.name} جاهز — إضافة المزيد من الصور`
@@ -296,7 +323,7 @@ export function ImageConverterTool({ lang }: Props) {
           ref={fileInputRef}
           type="file"
           multiple
-          accept="image/png,image/jpeg,image/webp"
+          accept="image/png,image/jpeg,image/webp,image/heic,image/heif,.heic,.heif"
           aria-label={uploadAriaLabel}
           tabIndex={-1}
           onChange={(e) => {
@@ -340,6 +367,18 @@ export function ImageConverterTool({ lang }: Props) {
           )}
         </div>
       </div>
+
+      {items.length > 1 && (
+        <button
+          type="button"
+          disabled={isConverting || items.some((item) => !item.outputBlob)}
+          onClick={handleDownloadZip}
+          className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border border-violet-200 bg-violet-50 px-4 py-2.5 text-sm font-semibold text-violet-800 hover:bg-violet-100 disabled:opacity-50"
+        >
+          <Download className="h-4 w-4" aria-hidden="true" />
+          {isAr ? 'تنزيل كل النتائج بصيغة ZIP' : 'Download all results as ZIP'}
+        </button>
+      )}
 
       {/* Converted Files List */}
       {items.length > 0 && (

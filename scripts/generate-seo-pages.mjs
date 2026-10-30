@@ -103,6 +103,15 @@ const tools = [
     steps: ['Choose a PDF file.', 'Select JPG or PNG and an output resolution.', 'Preview each page and download the images.'],
   },
   {
+    slug: 'pdf-compressor',
+    title: 'Compress PDF Files Online for Free – LUMIXA',
+    description: 'Reduce PDF file size with browser-side optimization. Compare the original and optimized files before downloading.',
+    heading: 'Compress PDF Files',
+    intro: 'Optimize PDF structure locally in your browser and compare the result before downloading.',
+    formats: 'PDF local optimization',
+    steps: ['Choose a PDF file.', 'Let LUMIXA optimize its internal structure.', 'Compare sizes and download the optimized PDF.'],
+  },
+  {
     slug: 'password-generator',
     title: 'Free Strong Password Generator – LUMIXA',
     description: 'Create strong random passwords with custom length, symbols, numbers, and uppercase characters entirely in your browser.',
