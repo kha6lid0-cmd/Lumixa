@@ -1,94 +1,100 @@
+@import "tailwindcss";
 
-
-/* LUMIXA PWA install banner */
-.lumixa-install-banner {
-  position: fixed;
-  z-index: 80;
-  inset-inline: 0;
-  bottom: 0;
-  padding: 12px max(16px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
-  pointer-events: none;
-  animation: lumixa-install-slide-up 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+@theme {
+  --font-sans: "Plus Jakarta Sans", "IBM Plex Sans Arabic", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
-body:has(.lumixa-install-banner) {
-  padding-bottom: 112px;
-}
-
-.lumixa-install-banner__content {
-  position: relative;
-  isolation: isolate;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  width: min(100%, 920px);
-  min-height: 78px;
-  margin: 0 auto;
-  padding: 14px 16px;
-  overflow: hidden;
-  pointer-events: auto;
-  border: 1px solid rgb(124 58 237 / 20%);
-  border-radius: 22px;
-  background: linear-gradient(135deg, rgb(255 255 255 / 98%), rgb(250 248 255 / 98%));
-  box-shadow: 0 18px 50px rgb(30 15 70 / 18%), 0 4px 16px rgb(76 29 149 / 8%);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-}
-
-.lumixa-install-banner__content::before {
-  position: absolute;
-  inset-inline-start: 0;
-  top: 0;
-  width: 4px;
-  height: 100%;
-  content: '';
-  background: linear-gradient(180deg, #7c3aed, #35156d);
-}
-
-.lumixa-install-banner__glow { position: absolute; right: 10%; bottom: 0; width: 280px; height: 160px; pointer-events: none; background: radial-gradient(circle, rgb(139 92 246 / 20%), transparent 68%); filter: blur(4px); }
-.lumixa-install-banner__icon { position: relative; z-index: 1; display: grid; flex: 0 0 48px; place-items: center; width: 48px; height: 48px; color: white; border-radius: 15px; background: linear-gradient(145deg, #7c3aed, #35156d); box-shadow: 0 8px 18px rgb(109 40 217 / 28%), inset 0 1px 0 rgb(255 255 255 / 25%); }
-.lumixa-install-banner__icon svg { width: 24px; height: 24px; }
-.lumixa-install-banner__copy { position: relative; z-index: 1; min-width: 0; flex: 1; }
-.lumixa-install-banner__eyebrow { margin-bottom: 2px; color: #6d28d9; font-size: 10px; font-weight: 800; letter-spacing: .08em; line-height: 1.2; text-transform: uppercase; }
-.lumixa-install-banner__copy h2 { margin: 0; color: #0f172a; font-size: 15px; font-weight: 800; line-height: 1.35; }
-.lumixa-install-banner__copy p { max-width: 520px; margin: 3px 0 0; color: #475569; font-size: 12px; line-height: 1.45; }
-.lumixa-install-banner__actions { position: relative; z-index: 1; display: flex; flex: 0 0 auto; align-items: center; gap: 8px; }
-.lumixa-install-banner__primary { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-width: 82px; min-height: 44px; padding: 10px 16px; color: white; border: 0; border-radius: 12px; background: linear-gradient(135deg, #7c3aed, #4c1d95); box-shadow: 0 6px 14px rgb(109 40 217 / 24%); cursor: pointer; font: inherit; font-size: 13px; font-weight: 800; }
-.lumixa-install-banner__primary:hover { filter: brightness(1.05); transform: translateY(-1px); }
-.lumixa-install-banner__close { display: grid; flex: 0 0 40px; place-items: center; width: 40px; height: 40px; color: #94a3b8; border: 1px solid rgb(148 163 184 / 28%); border-radius: 11px; background: rgb(255 255 255 / 72%); cursor: pointer; }
-.lumixa-install-banner__close:hover { color: #0f172a; background: #f5f3ff; }
-.lumixa-install-guide { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; margin-top: 7px; color: #35156d; font-size: 11px; font-weight: 700; line-height: 1.35; }
-.lumixa-install-guide__step { display: inline-grid; place-items: center; width: 18px; height: 18px; color: white; border-radius: 50%; background: #6d28d9; font-size: 10px; }
-.lumixa-install-guide__arrow { color: #7c3aed; }
-.lumixa-install-banner__primary:focus-visible, .lumixa-install-banner__close:focus-visible { outline: 3px solid rgb(124 58 237 / 35%); outline-offset: 3px; }
-
-@media (max-width: 640px) {
-  body:has(.lumixa-install-banner) {
-    padding-bottom: 138px;
+@layer base {
+  html[lang="en"] {
+    font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   }
 
-  .lumixa-install-banner { padding-top: 8px; }
-  .lumixa-install-banner__content { align-items: flex-start; gap: 10px; min-height: 0; padding: 13px 12px; border-radius: 19px; }
-  .lumixa-install-banner__icon { flex-basis: 40px; width: 40px; height: 40px; border-radius: 12px; }
-  .lumixa-install-banner__icon svg { width: 20px; height: 20px; }
-  .lumixa-install-banner__eyebrow { font-size: 9px; }
-  .lumixa-install-banner__copy h2 { font-size: 14px; }
-  .lumixa-install-banner__copy p { font-size: 11px; }
-  .lumixa-install-banner__actions { gap: 5px; }
-  .lumixa-install-banner__primary { min-width: 66px; min-height: 42px; padding: 9px 11px; font-size: 12px; }
-  .lumixa-install-banner__close { flex-basis: 36px; width: 36px; height: 36px; }
+  html[lang="ar"] {
+    font-family: "IBM Plex Sans Arabic", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  h1, h2, h3, .text-balance {
+    text-wrap: balance;
+  }
+
+  button:not(:disabled),
+  a,
+  summary {
+    cursor: pointer;
+  }
+
+  html,
+  body,
+  #root {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .lumixa-tool-surface {
+    overflow-wrap: anywhere;
+  }
 }
 
-@media (prefers-color-scheme: dark) {
-  .lumixa-install-banner__content { border-color: rgb(167 139 250 / 25%); background: linear-gradient(135deg, rgb(30 22 55 / 97%), rgb(24 20 42 / 97%)); box-shadow: 0 18px 50px rgb(0 0 0 / 40%), 0 4px 16px rgb(0 0 0 / 22%); }
-  .lumixa-install-banner__copy h2 { color: #f8fafc; }
-  .lumixa-install-banner__copy p { color: #cbd5e1; }
-  .lumixa-install-banner__close { color: #a1a1aa; border-color: rgb(148 163 184 / 25%); background: rgb(255 255 255 / 6%); }
+@media (max-width: 640px) {
+  .lumixa-tool-surface button,
+  .lumixa-tool-surface select,
+  .lumixa-tool-surface input:not([type="color"]),
+  .lumixa-tool-surface textarea {
+    min-height: 44px;
+  }
+
+  .lumixa-tool-surface input[type="file"] {
+    max-width: 100%;
+    font-size: 0.8125rem;
+  }
+}
+
+@keyframes lumixa-indeterminate-ltr {
+  0% {
+    transform: translateX(-110%) scaleX(0.45);
+  }
+  50% {
+    transform: translateX(75%) scaleX(0.85);
+  }
+  100% {
+    transform: translateX(260%) scaleX(0.45);
+  }
+}
+
+@keyframes lumixa-indeterminate-rtl {
+  0% {
+    transform: translateX(110%) scaleX(0.45);
+  }
+  50% {
+    transform: translateX(-75%) scaleX(0.85);
+  }
+  100% {
+    transform: translateX(-260%) scaleX(0.45);
+  }
+}
+
+.animate-lumixa-indeterminate {
+  animation: lumixa-indeterminate-ltr 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform;
+}
+
+[dir="rtl"] .animate-lumixa-indeterminate {
+  animation-name: lumixa-indeterminate-rtl;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .lumixa-install-banner { animation: none; }
-  .lumixa-install-banner__primary { transition: none; }
-}
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 
-@keyframes lumixa-install-slide-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .animate-lumixa-indeterminate {
+    width: 100% !important;
+    transform: none !important;
+  }
+}

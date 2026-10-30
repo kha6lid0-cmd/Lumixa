@@ -9,7 +9,6 @@ import { AdSlot } from './components/AdSlot';
 import { FAQSection } from './components/FAQSection';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
-import { InstallBanner } from './components/InstallBanner';
 import { StaticPage } from './components/StaticPage';
 import { ToolIcon } from './components/ToolIcon';
 import { ToolWorkspace } from './components/ToolWorkspace';
@@ -489,7 +488,6 @@ export default function App() {
         onNavigatePage={navigateToPage}
         onToggleLanguage={() => setLang((prev) => (prev === Language.EN ? Language.AR : Language.EN))}
       />
-      {!activeTool && !activePageId && <InstallBanner lang={lang} />}
     </div>
   );
 }
