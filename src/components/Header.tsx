@@ -33,7 +33,7 @@ export function Header({
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-8">
+      <div className="max-w-6xl mx-auto px-3 sm:px-6 h-16 flex items-center justify-between gap-3 sm:gap-8">
         {/* Zone 1: Single text element wordmark */}
         <a
           href="#/"
@@ -95,10 +95,10 @@ export function Header({
             type="button"
             onClick={onToggleLanguage}
             aria-label={lang === Language.EN ? 'Switch language to Arabic' : 'تغيير اللغة إلى الإنجليزية'}
-            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-violet-700 hover:bg-violet-800 active:scale-[0.99] transition-all duration-150 rounded-lg whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-700"
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-2.5 text-xs sm:text-sm font-semibold text-white bg-violet-700 hover:bg-violet-800 active:scale-[0.99] transition-all duration-150 rounded-lg whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-700"
           >
             <Globe className="w-4 h-4 shrink-0" aria-hidden="true" />
-            <span>{t.nav.switchLangLabel}</span>
+            <span className="hidden xs:inline sm:inline">{t.nav.switchLangLabel}</span>
           </button>
 
           <button

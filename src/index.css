@@ -23,6 +23,31 @@
   summary {
     cursor: pointer;
   }
+
+  html,
+  body,
+  #root {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .lumixa-tool-surface {
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 640px) {
+  .lumixa-tool-surface button,
+  .lumixa-tool-surface select,
+  .lumixa-tool-surface input:not([type="color"]),
+  .lumixa-tool-surface textarea {
+    min-height: 44px;
+  }
+
+  .lumixa-tool-surface input[type="file"] {
+    max-width: 100%;
+    font-size: 0.8125rem;
+  }
 }
 
 @keyframes lumixa-indeterminate-ltr {
@@ -73,4 +98,3 @@
     transform: none !important;
   }
 }
-

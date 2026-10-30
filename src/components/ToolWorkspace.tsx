@@ -148,7 +148,7 @@ export function ToolWorkspace({
         onSelectTool={onSelectTool}
       />
 
-      <article className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-10">
+      <article className="max-w-5xl mx-auto px-3 sm:px-6 py-6 sm:py-12 space-y-8 sm:space-y-10">
         {/* Polite Screen-Reader Status Announcer */}
         <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
           {`${content.name}: ${liveAnnouncement}`}
@@ -162,12 +162,12 @@ export function ToolWorkspace({
             <span>{content.formatsLabel}</span>
           </div>
 
-          <div className="flex items-start gap-4">
+          <div className="flex items-start gap-3 sm:gap-4">
             <div className="w-12 h-12 rounded-xl bg-violet-100 text-violet-700 flex items-center justify-center shrink-0 mt-0.5">
               <ToolIcon name={tool.iconName} className="w-6 h-6" />
             </div>
-            <div>
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
+            <div className="min-w-0">
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 break-words">
                 {content.name}
               </h1>
               <p className="mt-1.5 text-sm sm:text-base text-slate-600 max-w-2xl leading-relaxed">
@@ -181,7 +181,7 @@ export function ToolWorkspace({
         <section
           aria-label={`${content.name} — ${liveAnnouncement}`}
           aria-busy={Boolean(a11yStatus.isBusy)}
-          className="relative overflow-hidden bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-8"
+          className="lumixa-tool-surface relative overflow-hidden bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-8"
         >
           {/* Subtle Top-Edge Indeterminate Progress Bar (Zero CLS) */}
           <div
@@ -200,7 +200,7 @@ export function ToolWorkspace({
             {renderActiveTool()}
           </WorkspaceA11yProvider>
 
-          <div className="mt-6 pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500">
+          <div className="mt-5 pt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-slate-500">
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-violet-700 shrink-0" aria-hidden="true" />
               <span>{t.workspace.privacyNotice}</span>
