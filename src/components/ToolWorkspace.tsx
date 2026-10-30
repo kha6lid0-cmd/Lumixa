@@ -13,6 +13,8 @@ import { ImagesToPdfTool } from './tools/ImagesToPdfTool';
 import { JsonFormatterTool } from './tools/JsonFormatterTool';
 import { PdfMergerTool } from './tools/PdfMergerTool';
 import { PdfSplitterTool } from './tools/PdfSplitterTool';
+import { PdfToImagesTool } from './tools/PdfToImagesTool';
+import { PasswordGeneratorTool } from './tools/PasswordGeneratorTool';
 import { QrGeneratorTool } from './tools/QrGeneratorTool';
 import { TextFormatterTool } from './tools/TextFormatterTool';
 import { WordCounterTool } from './tools/WordCounterTool';
@@ -32,6 +34,7 @@ const FILE_BASED_TOOLS = new Set<ToolId>([
   ToolId.IMAGES_TO_PDF,
   ToolId.PDF_MERGER,
   ToolId.PDF_SPLITTER,
+  ToolId.PDF_TO_IMAGES,
 ]);
 
 export function ToolWorkspace({
@@ -124,12 +127,16 @@ export function ToolWorkspace({
         return <PdfMergerTool lang={lang} />;
       case ToolId.PDF_SPLITTER:
         return <PdfSplitterTool lang={lang} />;
+      case ToolId.PDF_TO_IMAGES:
+        return <PdfToImagesTool lang={lang} />;
       case ToolId.WORD_COUNTER:
         return <WordCounterTool lang={lang} />;
       case ToolId.TEXT_FORMATTER:
         return <TextFormatterTool lang={lang} />;
       case ToolId.JSON_FORMATTER:
         return <JsonFormatterTool lang={lang} />;
+      case ToolId.PASSWORD_GENERATOR:
+        return <PasswordGeneratorTool lang={lang} />;
     }
   };
 

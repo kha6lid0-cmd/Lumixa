@@ -93,6 +93,24 @@ const tools = [
     formats: 'JSON data',
     steps: ['Paste JSON into the editor.', 'Format, validate, minify, or sort keys.', 'Copy or download the result.'],
   },
+  {
+    slug: 'pdf-to-images',
+    title: 'Convert PDF to JPG or PNG Online – LUMIXA',
+    description: 'Turn every page of a PDF into a downloadable JPG or PNG image locally in your browser with adjustable resolution.',
+    heading: 'Convert PDF to Images',
+    intro: 'Render PDF pages as clear JPG or PNG images locally in your browser with selectable format and resolution.',
+    formats: 'PDF to JPG or PNG',
+    steps: ['Choose a PDF file.', 'Select JPG or PNG and an output resolution.', 'Preview each page and download the images.'],
+  },
+  {
+    slug: 'password-generator',
+    title: 'Free Strong Password Generator – LUMIXA',
+    description: 'Create strong random passwords with custom length, symbols, numbers, and uppercase characters entirely in your browser.',
+    heading: 'Strong Password Generator',
+    intro: 'Generate a strong password locally using your device cryptography. Nothing is saved or sent to a server.',
+    formats: 'Secure local generation',
+    steps: ['Choose the password length and character types.', 'Generate a fresh random password.', 'Copy it to your password manager.'],
+  },
 ];
 
 const esc = (value) => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');

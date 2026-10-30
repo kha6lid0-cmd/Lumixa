@@ -8,6 +8,7 @@ import {
   QrCode,
   RefreshCw,
   Scissors,
+  ShieldCheck,
   Type,
 } from 'lucide-react';
 import { ToolDefinition } from '../types/tools';
@@ -33,6 +34,8 @@ export function ToolIcon({ name, className = 'w-5 h-5' }: ToolIconProps) {
       return <Files className={className} aria-hidden="true" />;
     case 'Scissors':
       return <Scissors className={className} aria-hidden="true" />;
+    case 'ShieldCheck':
+      return <ShieldCheck className={className} aria-hidden="true" />;
     case 'AlignLeft':
       return <AlignLeft className={className} aria-hidden="true" />;
     case 'Type':

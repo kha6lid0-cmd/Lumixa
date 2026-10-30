@@ -19,9 +19,11 @@ export enum ToolId {
   QR_GENERATOR = 'qr-generator',
   PDF_MERGER = 'pdf-merger',
   PDF_SPLITTER = 'pdf-splitter',
+  PDF_TO_IMAGES = 'pdf-to-images',
   WORD_COUNTER = 'word-counter',
   TEXT_FORMATTER = 'text-formatter',
   JSON_FORMATTER = 'json-formatter',
+  PASSWORD_GENERATOR = 'password-generator',
 }
 
 export enum StaticPageId {
@@ -52,6 +54,7 @@ export interface ToolDefinition {
     | 'QrCode'
     | 'Files'
     | 'Scissors'
+    | 'ShieldCheck'
     | 'AlignLeft'
     | 'Type'
     | 'Braces';
