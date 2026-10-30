@@ -24,6 +24,13 @@ export enum ToolId {
   JSON_FORMATTER = 'json-formatter',
 }
 
+export enum StaticPageId {
+  PRIVACY_POLICY = 'privacy-policy',
+  TERMS_OF_USE = 'terms-of-use',
+  ABOUT_US = 'about-us',
+  CONTACT_US = 'contact-us',
+}
+
 export interface LocalizedToolContent {
   name: string;
   shortDescription: string;

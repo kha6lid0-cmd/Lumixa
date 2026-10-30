@@ -9,25 +9,36 @@ import { AdSlot } from './components/AdSlot';
 import { FAQSection } from './components/FAQSection';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
+import { StaticPage } from './components/StaticPage';
 import { ToolIcon } from './components/ToolIcon';
 import { ToolWorkspace } from './components/ToolWorkspace';
 import { TOOLS_CATALOG, UI_STRINGS } from './data/translations';
-import { Language, ToolCategory, ToolId } from './types/tools';
+import { Language, StaticPageId, ToolCategory, ToolId } from './types/tools';
 
-function parseHashRoute(hash: string): { toolId: ToolId | null; category: ToolCategory } {
+function parseHashRoute(hash: string): {
+  toolId: ToolId | null;
+  category: ToolCategory;
+  pageId: StaticPageId | null;
+} {
   const cleaned = hash.replace(/^#\/?/, '');
+  if (cleaned.startsWith('page/')) {
+    const pageId = cleaned.slice('page/'.length) as StaticPageId;
+    if (Object.values(StaticPageId).includes(pageId)) {
+      return { toolId: null, category: ToolCategory.ALL, pageId };
+    }
+  }
   if (cleaned.startsWith('tool/')) {
     const slug = cleaned.slice('tool/'.length) as ToolId;
     const exists = TOOLS_CATALOG.some((t) => t.id === slug);
-    if (exists) return { toolId: slug, category: ToolCategory.ALL };
+    if (exists) return { toolId: slug, category: ToolCategory.ALL, pageId: null };
   }
   if (cleaned.startsWith('category/')) {
     const cat = cleaned.slice('category/'.length) as ToolCategory;
     if (Object.values(ToolCategory).includes(cat)) {
-      return { toolId: null, category: cat };
+      return { toolId: null, category: cat, pageId: null };
     }
   }
-  return { toolId: null, category: ToolCategory.ALL };
+  return { toolId: null, category: ToolCategory.ALL, pageId: null };
 }
 
 function setMetaContent(selector: string, content: string) {
@@ -49,6 +60,7 @@ export default function App() {
   const initialRoute = parseHashRoute(window.location.hash);
   const [activeToolId, setActiveToolId] = useState<ToolId | null>(initialRoute.toolId);
   const [selectedCategory, setSelectedCategory] = useState<ToolCategory>(initialRoute.category);
+  const [activePageId, setActivePageId] = useState<StaticPageId | null>(initialRoute.pageId);
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   const catalogRef = useRef<HTMLElement>(null);
@@ -60,7 +72,8 @@ export default function App() {
     const onHashChange = () => {
       const parsed = parseHashRoute(window.location.hash);
       setActiveToolId(parsed.toolId);
-      if (!parsed.toolId) {
+      setActivePageId(parsed.pageId);
+      if (!parsed.toolId && !parsed.pageId) {
         setSelectedCategory(parsed.category);
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -84,9 +97,14 @@ export default function App() {
     const activeTool = activeToolId
       ? TOOLS_CATALOG.find((item) => item.id === activeToolId)
       : undefined;
+    const activePage = activePageId ? UI_STRINGS[lang].pages[activePageId] : undefined;
 
-    const pageTitle = activeTool ? activeTool[lang].seoTitle : t.siteTitle;
-    const pageDesc = activeTool ? activeTool[lang].seoDescription : t.siteMetaDescription;
+    const pageTitle = activeTool ? activeTool[lang].seoTitle : activePage ? activePage.title : t.siteTitle;
+    const pageDesc = activeTool
+      ? activeTool[lang].seoDescription
+      : activePage
+      ? activePage.description
+      : t.siteMetaDescription;
 
     document.title = pageTitle;
     setMetaContent('meta[name="description"]', pageDesc);
@@ -94,17 +112,19 @@ export default function App() {
     setMetaContent('meta[property="og:description"]', pageDesc);
     setMetaContent('meta[name="twitter:title"]', pageTitle);
     setMetaContent('meta[name="twitter:description"]', pageDesc);
-  }, [lang, activeToolId, t]);
+  }, [lang, activeToolId, activePageId, t]);
 
   const navigateHome = () => {
     window.location.hash = '/';
     setActiveToolId(null);
+    setActivePageId(null);
     setSelectedCategory(ToolCategory.ALL);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const navigateCategory = (cat: ToolCategory) => {
     setActiveToolId(null);
+    setActivePageId(null);
     setSelectedCategory(cat);
     window.location.hash = cat === ToolCategory.ALL ? '/' : `/category/${cat}`;
     setTimeout(() => {
@@ -113,8 +133,16 @@ export default function App() {
   };
 
   const navigateToTool = (id: ToolId) => {
+    setActivePageId(null);
     window.location.hash = `/tool/${id}`;
     setActiveToolId(id);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const navigateToPage = (pageId: StaticPageId) => {
+    setActiveToolId(null);
+    setActivePageId(pageId);
+    window.location.hash = `/page/${pageId}`;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -177,7 +205,9 @@ export default function App() {
       />
 
       <main className="flex-1">
-        {activeTool ? (
+        {activePageId ? (
+          <StaticPage pageId={activePageId} lang={lang} onNavigateHome={navigateHome} />
+        ) : activeTool ? (
           <ToolWorkspace
             tool={activeTool}
             lang={lang}
@@ -442,6 +472,7 @@ export default function App() {
         onNavigateCategory={navigateCategory}
         onNavigateHome={navigateHome}
         onNavigateFaq={navigateToFaq}
+        onNavigatePage={navigateToPage}
         onToggleLanguage={() => setLang((prev) => (prev === Language.EN ? Language.AR : Language.EN))}
       />
     </div>

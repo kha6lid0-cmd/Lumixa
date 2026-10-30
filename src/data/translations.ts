@@ -1,4 +1,4 @@
-import { FAQItem, Language, ToolCategory, ToolDefinition, ToolId } from '../types/tools';
+import { FAQItem, Language, StaticPageId, ToolCategory, ToolDefinition, ToolId } from '../types/tools';
 
 export const TOOLS_CATALOG: ToolDefinition[] = [
   {
@@ -418,6 +418,7 @@ export const UI_STRINGS: Record<
       freeForeverNote: string;
       copyright: string;
     };
+    pages: Record<StaticPageId, { title: string; description: string }>;
   }
 > = {
   [Language.EN]: {
@@ -536,6 +537,24 @@ export const UI_STRINGS: Record<
       freeForeverNote: 'Free to use · No registration · Local browser processing',
       copyright: `© ${new Date().getFullYear()} LUMIXA. All rights reserved.`,
     },
+    pages: {
+      [StaticPageId.PRIVACY_POLICY]: {
+        title: 'Privacy Policy',
+        description: 'How LUMIXA handles your information and protects your files.',
+      },
+      [StaticPageId.TERMS_OF_USE]: {
+        title: 'Terms of Use',
+        description: 'The terms that apply when you use the free LUMIXA tools.',
+      },
+      [StaticPageId.ABOUT_US]: {
+        title: 'About Us',
+        description: 'Learn what LUMIXA is and why it was built.',
+      },
+      [StaticPageId.CONTACT_US]: {
+        title: 'Contact Us',
+        description: 'Get help, report an issue, or suggest an improvement to LUMIXA.',
+      },
+    },
   },
   [Language.AR]: {
     siteTitle: 'LUMIXA – منصة الأدوات الرقمية المجانية المتكاملة',
@@ -652,6 +671,24 @@ export const UI_STRINGS: Record<
       robotsLink: 'ملف Robots.txt',
       freeForeverNote: 'مجاني بالكامل · بدون تسجيل · معالجة محلية آمنة',
       copyright: `© ${new Date().getFullYear()} LUMIXA. جميع الحقوق محفوظة.`,
+    },
+    pages: {
+      [StaticPageId.PRIVACY_POLICY]: {
+        title: 'سياسة الخصوصية',
+        description: 'كيف تتعامل LUMIXA مع معلوماتك وتحافظ على خصوصية ملفاتك.',
+      },
+      [StaticPageId.TERMS_OF_USE]: {
+        title: 'شروط الاستخدام',
+        description: 'الشروط المطبقة عند استخدام أدوات LUMIXA المجانية.',
+      },
+      [StaticPageId.ABOUT_US]: {
+        title: 'من نحن',
+        description: 'تعرّف على LUMIXA والهدف من إنشائها.',
+      },
+      [StaticPageId.CONTACT_US]: {
+        title: 'اتصل بنا',
+        description: 'احصل على المساعدة أو أبلغ عن مشكلة أو اقترح تطويراً لـ LUMIXA.',
+      },
     },
   },
 };

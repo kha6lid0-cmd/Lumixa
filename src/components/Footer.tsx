@@ -1,11 +1,12 @@
 import { UI_STRINGS } from '../data/translations';
-import { Language, ToolCategory } from '../types/tools';
+import { Language, StaticPageId, ToolCategory } from '../types/tools';
 
 interface FooterProps {
   lang: Language;
   onNavigateCategory: (category: ToolCategory) => void;
   onNavigateHome: () => void;
   onNavigateFaq: () => void;
+  onNavigatePage: (pageId: StaticPageId) => void;
   onToggleLanguage: () => void;
 }
 
@@ -14,6 +15,7 @@ export function Footer({
   onNavigateCategory,
   onNavigateHome,
   onNavigateFaq,
+  onNavigatePage,
   onToggleLanguage,
 }: FooterProps) {
   const t = UI_STRINGS[lang];
@@ -91,6 +93,42 @@ export function Footer({
                   className="hover:text-violet-700 transition-colors"
                 >
                   {t.nav.faq}
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => onNavigatePage(StaticPageId.PRIVACY_POLICY)}
+                  className="hover:text-violet-700 transition-colors"
+                >
+                  {t.pages[StaticPageId.PRIVACY_POLICY].title}
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => onNavigatePage(StaticPageId.TERMS_OF_USE)}
+                  className="hover:text-violet-700 transition-colors"
+                >
+                  {t.pages[StaticPageId.TERMS_OF_USE].title}
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => onNavigatePage(StaticPageId.ABOUT_US)}
+                  className="hover:text-violet-700 transition-colors"
+                >
+                  {t.pages[StaticPageId.ABOUT_US].title}
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => onNavigatePage(StaticPageId.CONTACT_US)}
+                  className="hover:text-violet-700 transition-colors"
+                >
+                  {t.pages[StaticPageId.CONTACT_US].title}
                 </button>
               </li>
               <li>
