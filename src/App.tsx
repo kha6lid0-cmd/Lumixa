@@ -4,7 +4,7 @@
  */
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowRight, Search, X } from 'lucide-react';
+import { ArrowRight, Search, ShieldCheck, Sparkles, X, Zap } from 'lucide-react';
 import { AdSlot } from './components/AdSlot';
 import { FAQSection } from './components/FAQSection';
 import { Footer } from './components/Footer';
@@ -231,23 +231,24 @@ export default function App() {
         ) : (
           <>
             {/* Hero Section */}
-            <section className="relative overflow-hidden bg-gradient-to-b from-violet-50/75 via-white to-[#FAFAFC] border-b border-slate-200/70 pt-14 pb-16 sm:pt-20 sm:pb-22">
-              <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+            <section className="relative overflow-hidden border-b border-slate-200/70 bg-[radial-gradient(circle_at_80%_10%,rgba(196,181,253,0.34),transparent_34%),linear-gradient(180deg,#f7f4ff_0%,#ffffff_58%,#fafafc_100%)] pt-12 pb-14 sm:pt-18 sm:pb-20">
+              <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:gap-16">
+                <div className="text-center lg:text-start">
                 <p className="text-xs sm:text-sm font-medium text-violet-800 tracking-normal">
                   {t.hero.kicker}
                 </p>
 
-                <h1 className="mt-4 text-[clamp(2.25rem,4.2vw,3.65rem)] font-bold tracking-tight text-slate-950 leading-[1.14]">
+                <h1 className="mt-4 text-[clamp(2.25rem,4.2vw,3.65rem)] font-bold tracking-[-0.04em] text-slate-950 leading-[1.1]">
                   {t.hero.headline}
                 </h1>
 
-                <p className="mt-5 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg lg:me-auto">
                   {t.hero.subtitle}
                 </p>
 
                 {/* Live Search Bar */}
-                <div className="mt-8 max-w-2xl mx-auto">
-                  <div className="relative flex items-center">
+                <div className="mx-auto mt-8 max-w-2xl lg:me-auto">
+                  <div className="relative flex items-center rounded-2xl bg-white/90 shadow-[0_14px_36px_rgba(30,15,70,0.10)] ring-1 ring-slate-200/90 transition-shadow focus-within:shadow-[0_18px_42px_rgba(109,40,217,0.15)] focus-within:ring-violet-300">
                     <Search
                       className="w-5 h-5 text-slate-400 absolute start-4 pointer-events-none"
                       aria-hidden="true"
@@ -263,7 +264,7 @@ export default function App() {
                       }}
                       aria-label={t.hero.searchPlaceholder}
                       placeholder={t.hero.searchPlaceholder}
-                      className="w-full h-14 ps-12 pe-12 rounded-2xl border border-slate-300 bg-white text-sm sm:text-base text-slate-900 placeholder:text-slate-400 shadow-xs focus:border-violet-600 focus:ring-4 focus:ring-violet-600/10 focus:outline-none transition-all"
+                      className="h-14 w-full rounded-2xl border-0 bg-transparent ps-12 pe-12 text-sm text-slate-900 outline-none placeholder:text-slate-400 sm:text-base"
                     />
                     {searchQuery && (
                       <button
@@ -278,7 +279,7 @@ export default function App() {
                   </div>
 
                   {/* Unboxed Quick Access Links */}
-                  <div className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-xs text-slate-500">
+                  <div className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-xs text-slate-500 lg:justify-start">
                     <span>{t.hero.popularLabel}</span>
                     {quickTools.map((qId, idx) => {
                       const toolObj = TOOLS_CATALOG.find((item) => item.id === qId);
@@ -303,6 +304,30 @@ export default function App() {
                         </span>
                       );
                     })}
+                  </div>
+                </div>
+
+                </div>
+
+                <div className="relative hidden min-h-[300px] lg:block" aria-label="LUMIXA tool highlights">
+                  <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-violet-200/70 via-white/70 to-indigo-100/70 blur-2xl" aria-hidden="true" />
+                  <div className="relative mx-auto max-w-sm rounded-[2rem] border border-white/80 bg-white/80 p-5 shadow-[0_24px_60px_rgba(30,15,70,0.14)] backdrop-blur-xl">
+                    <div className="flex items-center justify-between border-b border-slate-200/80 pb-4">
+                      <div className="flex items-center gap-2 text-sm font-bold text-slate-900"><Sparkles className="h-4 w-4 text-violet-600" aria-hidden="true" /> LUMIXA</div>
+                      <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-bold text-emerald-700">100% Free</span>
+                    </div>
+                    <div className="mt-4 space-y-3">
+                      {[quickTools[0], quickTools[1], quickTools[2]].map((qId, index) => {
+                        const item = TOOLS_CATALOG.find((tool) => tool.id === qId);
+                        if (!item) return null;
+                        return <div key={qId} className="flex items-center gap-3 rounded-2xl border border-slate-200/80 bg-white/80 p-3 shadow-sm">
+                          <span className={`grid h-10 w-10 place-items-center rounded-xl ${index === 0 ? 'bg-violet-100 text-violet-700' : index === 1 ? 'bg-rose-100 text-rose-700' : 'bg-sky-100 text-sky-700'}`}><ToolIcon name={item.iconName} className="h-4 w-4" /></span>
+                          <span className="min-w-0 flex-1"><strong className="block truncate text-sm text-slate-900">{item[lang].name}</strong><span className="mt-0.5 block truncate text-xs text-slate-500">{item[lang].formatsLabel}</span></span>
+                          {index === 0 ? <Zap className="h-4 w-4 text-amber-500" aria-hidden="true" /> : <ShieldCheck className="h-4 w-4 text-emerald-500" aria-hidden="true" />}
+                        </div>;
+                      })}
+                    </div>
+                    <div className="mt-4 flex items-center gap-2 rounded-xl bg-violet-50 px-3 py-2.5 text-xs font-semibold text-violet-800"><ShieldCheck className="h-4 w-4 shrink-0" aria-hidden="true" /> {isAr ? 'تعمل مباشرة داخل متصفحك' : 'Works directly in your browser'}</div>
                   </div>
                 </div>
               </div>
@@ -396,7 +421,7 @@ export default function App() {
                   </button>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                   {filteredTools.map((tool) => {
                     const content = tool[lang];
                     return (
@@ -407,16 +432,16 @@ export default function App() {
                           e.preventDefault();
                           navigateToTool(tool.id);
                         }}
-                        className="group bg-white border border-slate-200/90 hover:border-violet-500 rounded-2xl p-6 flex flex-col justify-between gap-6 transition-all duration-150 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600"
+                        className="group flex flex-col justify-between gap-6 rounded-[1.35rem] border border-slate-200/90 bg-white p-6 shadow-[0_6px_20px_rgba(30,15,70,0.04)] transition-all duration-200 hover:-translate-y-1 hover:border-violet-300 hover:shadow-[0_16px_34px_rgba(76,29,149,0.12)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600"
                       >
                         <div className="space-y-3.5">
                           <div className="flex items-center justify-between gap-3">
-                            <div className="w-11 h-11 rounded-xl bg-violet-50 text-violet-700 group-hover:bg-violet-700 group-hover:text-white transition-colors duration-150 flex items-center justify-center shrink-0">
+                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-50 to-violet-100 text-violet-700 transition-all duration-200 group-hover:from-violet-700 group-hover:to-violet-800 group-hover:text-white">
                               <ToolIcon name={tool.iconName} className="w-5 h-5" />
                             </div>
 
                             {/* Unboxed Metadata Discipline */}
-                            <div className="flex items-center gap-1.5 text-xs text-slate-500 truncate">
+                            <div className="flex max-w-[65%] items-center gap-1.5 truncate text-xs text-slate-500">
                               <span>{t.categories[tool.category]}</span>
                               <span aria-hidden="true">·</span>
                               <span className="truncate">{content.formatsLabel}</span>
@@ -427,13 +452,13 @@ export default function App() {
                             <h3 className="text-lg font-bold text-slate-900 group-hover:text-violet-700 transition-colors">
                               {content.name}
                             </h3>
-                            <p className="mt-1.5 text-sm text-slate-600 leading-relaxed">
+                            <p className="mt-1.5 line-clamp-3 text-sm leading-relaxed text-slate-600">
                               {content.shortDescription}
                             </p>
                           </div>
                         </div>
 
-                        <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-violet-700">
+                        <div className="flex items-center justify-between border-t border-slate-100 pt-4 text-xs font-semibold text-violet-700">
                           <span>{t.catalog.openTool}</span>
                           <ArrowRight
                             className={`w-4 h-4 transition-transform duration-150 ${

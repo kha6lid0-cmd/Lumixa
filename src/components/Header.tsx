@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Globe, Menu, X } from 'lucide-react';
+import { FileStack, Globe, Menu, X } from 'lucide-react';
 import { UI_STRINGS } from '../data/translations';
 import { Language, ToolCategory } from '../types/tools';
 
@@ -32,8 +32,8 @@ export function Header({
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80">
-      <div className="max-w-6xl mx-auto px-3 sm:px-6 h-16 flex items-center justify-between gap-3 sm:gap-8">
+    <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 shadow-[0_1px_16px_rgba(30,15,70,0.04)] backdrop-blur-xl">
+      <div className="max-w-6xl mx-auto px-3 sm:px-6 h-[4.25rem] flex items-center justify-between gap-3 sm:gap-8">
         {/* Zone 1: Single text element wordmark */}
         <a
           href="#/"
@@ -42,8 +42,11 @@ export function Header({
             setMobileMenuOpen(false);
             onNavigateHome();
           }}
-          className="text-xl font-bold tracking-tight text-violet-800 hover:text-violet-900 transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-600 rounded"
-        >
+          className="group inline-flex items-center gap-2.5 text-xl font-bold tracking-tight text-slate-950 transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-600 rounded"
+          >
+          <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-violet-600 to-violet-900 text-white shadow-[0_6px_14px_rgba(109,40,217,0.24)] transition-transform duration-200 group-hover:-rotate-3 group-hover:scale-105" aria-hidden="true">
+            <FileStack className="h-4 w-4" strokeWidth={2.2} />
+          </span>
           LUMIXA
         </a>
 
@@ -95,7 +98,7 @@ export function Header({
             type="button"
             onClick={onToggleLanguage}
             aria-label={lang === Language.EN ? 'Switch language to Arabic' : 'تغيير اللغة إلى الإنجليزية'}
-            className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-2.5 text-xs sm:text-sm font-semibold text-white bg-violet-700 hover:bg-violet-800 active:scale-[0.99] transition-all duration-150 rounded-lg whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-700"
+          className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-2.5 text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-violet-700 to-violet-800 hover:from-violet-800 hover:to-violet-900 active:scale-[0.99] transition-all duration-150 rounded-xl whitespace-nowrap shrink-0 shadow-[0_5px_12px_rgba(109,40,217,0.16)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-700"
           >
             <Globe className="w-4 h-4 shrink-0" aria-hidden="true" />
             <span className="hidden xs:inline sm:inline">{t.nav.switchLangLabel}</span>
