@@ -104,8 +104,8 @@ const tools = [
   },
   {
     slug: 'pdf-compressor',
-    title: 'Compress PDF Files Online for Free – LUMIXA',
-    description: 'Reduce PDF file size with browser-side optimization. Compare the original and optimized files before downloading.',
+    title: 'Compress PDF Online Free Without Uploading | LUMIXA',
+    description: 'Compress PDF files free in your browser. Reduce file size privately with local processing, no account, and no watermark.',
     heading: 'Compress PDF Files',
     intro: 'Optimize PDF structure locally in your browser and compare the result before downloading.',
     formats: 'PDF local optimization',

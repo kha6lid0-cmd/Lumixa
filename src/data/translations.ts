@@ -386,8 +386,8 @@ export const TOOLS_CATALOG: ToolDefinition[] = [
     en: {
       name: 'Compress PDF Files',
       shortDescription: 'Optimize PDF structure and reduce file size locally without uploading your document.',
-      seoTitle: 'Compress PDF Files Online for Free – LUMIXA',
-      seoDescription: 'Reduce PDF file size with browser-side optimization. Compare the original and optimized files before downloading.',
+      seoTitle: 'Compress PDF Online Free Without Uploading | LUMIXA',
+      seoDescription: 'Compress PDF files free in your browser. Reduce file size privately with local processing, no account, and no watermark.',
       formatsLabel: 'PDF · Local Optimization',
       steps: ['Choose a standard PDF file.', 'Let LUMIXA optimize its internal structure locally.', 'Compare sizes and download the optimized PDF.'],
       keywords: ['compress pdf', 'reduce pdf size', 'optimize pdf', 'pdf compressor'],
@@ -395,8 +395,8 @@ export const TOOLS_CATALOG: ToolDefinition[] = [
     ar: {
       name: 'ضغط ملفات PDF',
       shortDescription: 'حسّن بنية ملف PDF وقلل حجمه محلياً دون رفع المستند إلى أي خادم.',
-      seoTitle: 'ضغط ملفات PDF أونلاين مجاناً – LUMIXA',
-      seoDescription: 'قلل حجم ملف PDF عبر تحسين بنيته داخل المتصفح مع مقارنة الحجم قبل وبعد التحسين.',
+      seoTitle: 'ضغط ملفات PDF مجانًا بدون رفع الملفات | LUMIXA',
+      seoDescription: 'اضغط ملفات PDF مجانًا من المتصفح لتقليل حجمها بخصوصية. معالجة محلية، بدون حساب وبدون علامة مائية.',
       formatsLabel: 'PDF · تحسين محلي',
       steps: ['اختر ملف PDF قياسياً.', 'اترك LUMIXA يحسن البنية الداخلية للملف محلياً.', 'قارن الحجمين وحمّل الملف المحسن.'],
       keywords: ['ضغط pdf', 'تقليل حجم pdf', 'تحسين pdf', 'مصغر pdf'],
