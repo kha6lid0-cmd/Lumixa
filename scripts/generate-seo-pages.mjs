@@ -126,14 +126,33 @@ const esc = (value) => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').re
 const page = (tool) => {
   const url = `${origin}/tools/${tool.slug}/`;
   const steps = tool.steps.map((step, index) => `<li><strong>${index + 1}.</strong> ${esc(step)}</li>`).join('');
+  const faq = [
+    [`Is ${tool.heading} free?`, `Yes. The ${tool.heading} tool is available at no cost in the LUMIXA browser tools collection.`],
+    ['Are my files uploaded?', 'Supported file processing is designed to happen locally in your browser whenever possible. Do not use the tool with a file if your browser or device cannot complete local processing.'],
+    [`What can I use ${tool.heading} for?`, `${tool.intro} It is suitable for quick personal, study, and work tasks without installing desktop software.`],
+  ];
+  const faqHtml = faq.map(([question, answer]) => `<div><h3>${esc(question)}</h3><p>${esc(answer)}</p></div>`).join('');
+  const related = tools.filter((item) => item.slug !== tool.slug).slice(0, 3).map((item) => `<a href="${origin}/tools/${item.slug}/">${esc(item.heading)}</a>`).join(' · ');
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    name: tool.heading,
-    description: tool.description,
-    url,
-    step: tool.steps.map((text, index) => ({ '@type': 'HowToStep', position: index + 1, text })),
-    tool: { '@type': 'HowToTool', name: 'LUMIXA browser tool' },
+    '@graph': [
+      {
+        '@type': 'HowTo',
+        name: tool.heading,
+        description: tool.description,
+        url,
+        step: tool.steps.map((text, index) => ({ '@type': 'HowToStep', position: index + 1, text })),
+        tool: { '@type': 'HowToTool', name: 'LUMIXA browser tool' },
+      },
+      {
+        '@type': 'WebApplication',
+        name: tool.heading,
+        applicationCategory: 'UtilitiesApplication',
+        operatingSystem: 'All',
+        isAccessibleForFree: true,
+        url,
+      },
+    ],
   });
   return `<!doctype html>
 <html lang="en" dir="ltr">
@@ -166,6 +185,12 @@ const page = (tool) => {
       <p><strong>Supported formats:</strong> ${esc(tool.formats)}</p>
       <h2>How to use this tool</h2>
       <ol>${steps}</ol>
+      <h2>Why use LUMIXA?</h2>
+      <p>${esc(tool.intro)} LUMIXA is built for fast, simple workflows on phones, tablets, and desktop browsers. The interface is bilingual in English and Arabic, and the result is ready to download when processing is complete.</p>
+      <h2>Frequently asked questions</h2>
+      <div>${faqHtml}</div>
+      <h2>Related tools</h2>
+      <p>${related}</p>
       <p><a href="${origin}/#/tool/${tool.slug}">Open the interactive ${esc(tool.heading)} tool</a></p>
     </article>
   </main>

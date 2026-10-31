@@ -499,6 +499,39 @@ export default function App() {
               </div>
             </section>
 
+            {/* Search-friendly educational content */}
+            <section className="border-t border-slate-200/80 bg-[#FAFAFC] py-16" aria-labelledby="learn-heading">
+              <div className="mx-auto max-w-6xl px-4 sm:px-6">
+                <div className="max-w-3xl">
+                  <h2 id="learn-heading" className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+                    {isAr ? 'أدوات رقمية مجانية تعمل من متصفحك' : 'Free online tools that work in your browser'}
+                  </h2>
+                  <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
+                    {isAr
+                      ? 'تساعدك LUMIXA على ضغط الصور وملفات PDF، تحويل الصيغ، دمج المستندات، إنشاء رموز QR، وتنسيق النصوص والبيانات بسرعة. لا تحتاج الأدوات الأساسية إلى حساب، وتتم معالجة الملفات محلياً في متصفحك كلما كان ذلك ممكناً؛ لذلك تبقى ملفاتك على جهازك أثناء الاستخدام.'
+                      : 'LUMIXA helps you compress images and PDFs, convert file formats, merge documents, create QR codes, and clean text or JSON in a few clicks. The core tools do not require an account, and supported files are processed locally in your browser whenever possible so they stay on your device.'}
+                  </p>
+                  <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
+                    {isAr
+                      ? 'للحصول على أفضل نتيجة، اختر الأداة التي تصف المهمة مباشرة ثم راجع المعاينة قبل تنزيل الملف. يمكنك البدء من أدوات ضغط PDF أو تحويل HEIC والصور، أو استخدام عداد الكلمات ومولد كلمات المرور للأعمال اليومية.'
+                      : 'For the best result, choose the tool that matches your task and review the preview before downloading. Start with PDF compression, image and HEIC conversion, or use the word counter and password generator for everyday work.'}
+                  </p>
+                </div>
+                <div className="mt-8 flex flex-wrap gap-x-5 gap-y-3 text-sm font-semibold text-violet-700">
+                  {[
+                    [ToolId.PDF_COMPRESSOR, isAr ? 'ضغط ملفات PDF' : 'Compress PDF files'],
+                    [ToolId.PDF_TO_IMAGES, isAr ? 'تحويل PDF إلى صور' : 'Convert PDF to images'],
+                    [ToolId.IMAGE_COMPRESSOR, isAr ? 'ضغط الصور' : 'Compress images'],
+                    [ToolId.PASSWORD_GENERATOR, isAr ? 'مولد كلمات المرور' : 'Password generator'],
+                  ].map(([id, label]) => (
+                    <a key={id} href={`#/tool/${id}`} onClick={(event) => { event.preventDefault(); navigateToTool(id as ToolId); }} className="underline decoration-violet-200 underline-offset-4 hover:text-violet-900 hover:decoration-violet-500">
+                      {label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </section>
+
             {/* FAQ Section */}
             <FAQSection lang={lang} />
           </>
