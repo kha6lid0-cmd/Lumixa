@@ -221,4 +221,47 @@ for (const [slug, title, description, body] of legalPages) {
   await writeFile(join(dir, 'index.html'), html);
 }
 
-console.log(`Generated ${tools.length} SEO tool pages and ${legalPages.length} legal pages.`);
+const guides = [
+  {
+    slug: 'compress-pdf-on-iphone',
+    title: 'How to Compress a PDF on iPhone Without Installing an App – LUMIXA',
+    description: 'A practical guide to reducing PDF file size on iPhone from a browser, with privacy-first local processing tips.',
+    heading: 'How to Compress a PDF on iPhone',
+    body: ['Large PDF attachments can be difficult to send from an iPhone. LUMIXA lets you choose a PDF from the Files app, optimize it in the browser, compare the result, and download the smaller copy without installing a separate app.', 'Open the PDF Compressor, choose your document, wait for local processing to finish, and check the original and optimized sizes before downloading. For private documents, keep the file on your device and avoid sharing it with unknown services.'],
+    links: [`${origin}/tools/pdf-compressor/`, `${origin}/tools/pdf-to-images/`],
+  },
+  {
+    slug: 'heic-to-jpg-privacy',
+    title: 'HEIC to JPG Conversion: Privacy Tips for iPhone Photos – LUMIXA',
+    description: 'Learn how to convert iPhone HEIC photos to JPG while keeping a privacy-first workflow and avoiding unnecessary uploads.',
+    heading: 'HEIC to JPG Conversion and Privacy',
+    body: ['HEIC is efficient for storing iPhone photos, but some websites and older apps still expect JPG. Before choosing a converter, check whether the files are uploaded to a server and whether the service explains how files are handled.', 'A browser-based workflow can be convenient for one-off conversions. Use LUMIXA for supported local image processing, review the output, and remove downloaded copies you no longer need.'],
+    links: [`${origin}/tools/image-converter/`, `${origin}/tools/image-compressor/`],
+  },
+  {
+    slug: 'reduce-pdf-size-for-email',
+    title: 'How to Reduce PDF Size Before Sending It by Email – LUMIXA',
+    description: 'Practical steps for making a PDF smaller before email, messaging, or online submission while checking the final file.',
+    heading: 'How to Reduce PDF Size for Email',
+    body: ['Email providers and online forms often limit attachment size. Start by removing pages you do not need, then use a PDF compressor and compare the result before sending it.', 'Always open the optimized copy and confirm that text, page order, and important visuals are still usable. LUMIXA processes supported PDF optimization in the browser, so you can review the file before downloading it.'],
+    links: [`${origin}/tools/pdf-compressor/`, `${origin}/tools/pdf-splitter/`, `${origin}/tools/pdf-merger/`],
+  },
+];
+
+for (const guide of guides) {
+  const url = `${origin}/guides/${guide.slug}/`;
+  const dir = join(process.cwd(), 'dist', 'guides', guide.slug);
+  await mkdir(dir, { recursive: true });
+  const linkHtml = guide.links.map((link) => `<li><a href="${link}">${link.replace(`${origin}/`, '').replaceAll('/', ' ')}</a></li>`).join('');
+  const paragraphs = guide.body.map((paragraph) => `<p>${esc(paragraph)}</p>`).join('');
+  const html = `<!doctype html><html lang="en" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${esc(guide.title)}</title><meta name="description" content="${esc(guide.description)}"><meta name="robots" content="index,follow"><link rel="canonical" href="${url}"><meta property="og:site_name" content="LUMIXA"><meta property="og:type" content="article"><meta property="og:url" content="${url}"><meta property="og:title" content="${esc(guide.title)}"><meta property="og:description" content="${esc(guide.description)}"><meta property="og:image" content="${origin}/og-image.svg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(guide.title)}"><meta name="twitter:description" content="${esc(guide.description)}"><meta name="twitter:image" content="${origin}/og-image.svg"><link rel="icon" href="${origin}/favicon.svg"></head><body><main><nav aria-label="Breadcrumb"><a href="${origin}/">LUMIXA</a> / <a href="${origin}/guides/">Guides</a> / ${esc(guide.heading)}</nav><article><h1>${esc(guide.heading)}</h1>${paragraphs}<h2>Useful LUMIXA tools</h2><ul>${linkHtml}</ul><p><a href="${origin}/">Explore all LUMIXA digital tools</a></p></article></main></body></html>`;
+  await writeFile(join(dir, 'index.html'), html);
+}
+
+const guidesIndexUrl = `${origin}/guides/`;
+const guidesIndexDir = join(process.cwd(), 'dist', 'guides');
+await mkdir(guidesIndexDir, { recursive: true });
+const guideLinks = guides.map((guide) => `<li><a href="${origin}/guides/${guide.slug}/">${esc(guide.heading)}</a><p>${esc(guide.description)}</p></li>`).join('');
+await writeFile(join(guidesIndexDir, 'index.html'), `<!doctype html><html lang="en" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>LUMIXA Guides – Practical File and Privacy Tips</title><meta name="description" content="Practical guides for PDF compression, HEIC conversion, file privacy, and browser-based digital tools."><meta name="robots" content="index,follow"><link rel="canonical" href="${guidesIndexUrl}"><meta property="og:site_name" content="LUMIXA"><meta property="og:type" content="website"><meta property="og:url" content="${guidesIndexUrl}"><meta property="og:title" content="LUMIXA Guides – Practical File and Privacy Tips"><meta property="og:description" content="Practical guides for PDF compression, HEIC conversion, file privacy, and browser-based digital tools."><meta property="og:image" content="${origin}/og-image.svg"><link rel="icon" href="${origin}/favicon.svg"></head><body><main><nav><a href="${origin}/">LUMIXA</a> / Guides</nav><article><h1>LUMIXA Guides</h1><p>Practical, privacy-first guidance for working with PDFs, images, and everyday digital files.</p><ul>${guideLinks}</ul></article></main></body></html>`);
+
+console.log(`Generated ${tools.length} SEO tool pages, ${legalPages.length} legal pages, ${guides.length} guides, and 1 guide index.`);

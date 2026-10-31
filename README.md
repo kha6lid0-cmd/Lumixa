@@ -4,6 +4,8 @@
 
 **لوميكسا (LUMIXA)** هي منصة ويب سريعة ومجانية بالكامل تدعم اللغتين العربية والإنجليزية (RTL / LTR)، وتضم أدوات رقمية متكاملة للصور وملفات PDF والنصوص والمطورين تعمل مباشرة داخل متصفح الزائر بخصوصية تامة.
 
+[Open LUMIXA online](https://lumixa-99t.pages.dev/) · [Explore SEO-friendly tool pages](https://lumixa-99t.pages.dev/sitemap.xml)
+
 ---
 
 ## Included Tools | الأدوات المتوفرة
@@ -18,6 +20,8 @@
 ### 2. PDF Tools | أدوات PDF
 - **Merge PDF:** Combine two or more PDF files in any custom order with instant preview.
 - **Split PDF:** Extract custom page ranges into a single PDF or separate PDF documents.
+- **PDF Compressor:** Reduce PDF file size with local browser-side optimization.
+- **PDF to Images:** Render PDF pages as JPG or PNG images with selectable resolution.
 
 ### 3. Text Tools | أدوات النصوص
 - **Word & Character Counter:** Live word, character, sentence, paragraph, and reading-time statistics.
@@ -25,6 +29,12 @@
 
 ### 4. Developer Tools | أدوات المطورين
 - **JSON Formatter & Validator:** Beautify, minify, validate JSON syntax with clear error messages, and copy with one click.
+- **Strong Password Generator:** Create random passwords locally with configurable length and character sets.
+
+### Guides | أدلة مفيدة
+- [How to compress a PDF on iPhone](https://lumixa-99t.pages.dev/guides/compress-pdf-on-iphone/)
+- [HEIC to JPG conversion and privacy tips](https://lumixa-99t.pages.dev/guides/heic-to-jpg-privacy/)
+- [How to reduce PDF size for email](https://lumixa-99t.pages.dev/guides/reduce-pdf-size-for-email/)
 
 ---
 
