@@ -120,6 +120,42 @@ const tools = [
     formats: 'Secure local generation',
     steps: ['Choose the password length and character types.', 'Generate a fresh random password.', 'Copy it to your password manager.'],
   },
+  {
+    slug: 'base64-converter',
+    title: 'Free Base64 Encoder & Decoder (Text & Files) – LUMIXA',
+    description: 'Encode text to Base64, decode Base64 strings, or convert images and files into Data URLs directly in your browser.',
+    heading: 'Base64 Encoder & Decoder',
+    intro: 'Encode UTF-8 text to Base64, decode strings, or convert images and files into Data URLs with zero server uploads.',
+    formats: 'Text, Files, Images to Base64',
+    steps: ['Choose Text or File mode.', 'Input text or select a file.', 'Copy or download the Base64 output.'],
+  },
+  {
+    slug: 'text-diff',
+    title: 'Free Text Diff & Compare Tool Online – LUMIXA',
+    description: 'Compare two text versions online. Highlight differences, additions, and deletions with side-by-side or unified view.',
+    heading: 'Text Diff and Comparison Tool',
+    intro: 'Find additions, deletions, and differences between two blocks of text or code side-by-side.',
+    formats: 'Plain text comparison',
+    steps: ['Paste original text on the left.', 'Paste modified text on the right.', 'Review highlighted differences.'],
+  },
+  {
+    slug: 'arabic-text-cleaner',
+    title: 'Arabic Text Cleaner & Tashkeel Remover – LUMIXA',
+    description: 'Clean Arabic text online: remove harakat / tashkeel, delete kashida tatweel, and normalize Alef and Yaa characters instantly.',
+    heading: 'Arabic Text Cleaner & Diacritics Remover',
+    intro: 'Strip Arabic diacritics (tashkeel), remove tatweel kashida, and normalize characters in one click.',
+    formats: 'Arabic plain text',
+    steps: ['Paste Arabic text.', 'Select cleaning action or one-click clean.', 'Copy normalized text.'],
+  },
+  {
+    slug: 'timestamp-converter',
+    title: 'Unix Timestamp / Epoch Converter Online – LUMIXA',
+    description: 'Convert Unix timestamps (seconds and milliseconds) to human-readable date & time and convert dates to epoch timestamps.',
+    heading: 'Unix Timestamp Converter',
+    intro: 'Convert Unix epoch timestamps to UTC and local human-readable dates and vice-versa in real time.',
+    formats: 'Epoch and ISO dates',
+    steps: ['Check current timestamp or enter a value.', 'Choose seconds or milliseconds.', 'View UTC, local date, and relative time.'],
+  },
 ];
 
 const esc = (value) => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
