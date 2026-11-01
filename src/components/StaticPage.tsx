@@ -40,7 +40,7 @@ const PAGE_COPY: Record<Language, Record<StaticPageId, PageCopy>> = {
         {
           heading: 'Hosting and third-party services',
           body:
-            'The website is hosted by GitHub Pages. The page also loads web fonts from Google Fonts. Those services may process standard technical request information according to their own policies. LUMIXA does not currently require registration, payment, or an account.',
+            'The website is hosted by Cloudflare Pages and the source code is published in a public GitHub repository. The page also loads web fonts from Google Fonts. These services may process standard technical request information according to their own policies. LUMIXA does not currently require registration, payment, or an account.',
         },
         {
           heading: 'Advertising and future changes',
@@ -165,7 +165,7 @@ const PAGE_COPY: Record<Language, Record<StaticPageId, PageCopy>> = {
         {
           heading: 'الاستضافة والخدمات الخارجية',
           body:
-            'تتم استضافة الموقع عبر GitHub Pages، كما يتم تحميل الخطوط من Google Fonts. قد تعالج هذه الخدمات معلومات تقنية قياسية وفق سياساتها الخاصة. لا تتطلب LUMIXA حالياً التسجيل أو الدفع أو إنشاء حساب.',
+            'تتم استضافة الموقع عبر Cloudflare Pages، كما أن مصدر المشروع منشور في مستودع GitHub عام، ويتم تحميل الخطوط من Google Fonts. قد تعالج هذه الخدمات معلومات تقنية قياسية وفق سياساتها الخاصة. لا تتطلب LUMIXA حالياً التسجيل أو الدفع أو إنشاء حساب.',
         },
         {
           heading: 'الإعلانات والتغييرات المستقبلية',
