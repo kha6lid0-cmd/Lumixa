@@ -1,8 +1,12 @@
 import {
   AlignLeft,
+  Binary,
   Braces,
+  Clock,
   FileImage,
   Files,
+  GitCompare,
+  Languages,
   Maximize2,
   Minimize2,
   QrCode,
@@ -42,5 +46,13 @@ export function ToolIcon({ name, className = 'w-5 h-5' }: ToolIconProps) {
       return <Type className={className} aria-hidden="true" />;
     case 'Braces':
       return <Braces className={className} aria-hidden="true" />;
+    case 'Binary':
+      return <Binary className={className} aria-hidden="true" />;
+    case 'GitCompare':
+      return <GitCompare className={className} aria-hidden="true" />;
+    case 'Languages':
+      return <Languages className={className} aria-hidden="true" />;
+    case 'Clock':
+      return <Clock className={className} aria-hidden="true" />;
   }
 }

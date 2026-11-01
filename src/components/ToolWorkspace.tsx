@@ -6,18 +6,22 @@ import { Language, ToolCategory, ToolDefinition, ToolId } from '../types/tools';
 import { AdSlot } from './AdSlot';
 import { Breadcrumb } from './Breadcrumb';
 import { ToolIcon } from './ToolIcon';
+import { ArabicTextCleanerTool } from './tools/ArabicTextCleanerTool';
+import { Base64ConverterTool } from './tools/Base64ConverterTool';
 import { ImageCompressorTool } from './tools/ImageCompressorTool';
 import { ImageConverterTool } from './tools/ImageConverterTool';
 import { ImageResizerTool } from './tools/ImageResizerTool';
 import { ImagesToPdfTool } from './tools/ImagesToPdfTool';
 import { JsonFormatterTool } from './tools/JsonFormatterTool';
+import { PasswordGeneratorTool } from './tools/PasswordGeneratorTool';
+import { PdfCompressorTool } from './tools/PdfCompressorTool';
 import { PdfMergerTool } from './tools/PdfMergerTool';
 import { PdfSplitterTool } from './tools/PdfSplitterTool';
 import { PdfToImagesTool } from './tools/PdfToImagesTool';
-import { PdfCompressorTool } from './tools/PdfCompressorTool';
-import { PasswordGeneratorTool } from './tools/PasswordGeneratorTool';
 import { QrGeneratorTool } from './tools/QrGeneratorTool';
+import { TextDiffTool } from './tools/TextDiffTool';
 import { TextFormatterTool } from './tools/TextFormatterTool';
+import { TimestampConverterTool } from './tools/TimestampConverterTool';
 import { WordCounterTool } from './tools/WordCounterTool';
 
 interface ToolWorkspaceProps {
@@ -37,6 +41,7 @@ const FILE_BASED_TOOLS = new Set<ToolId>([
   ToolId.PDF_SPLITTER,
   ToolId.PDF_TO_IMAGES,
   ToolId.PDF_COMPRESSOR,
+  ToolId.BASE64_CONVERTER,
 ]);
 
 export function ToolWorkspace({
@@ -155,6 +160,14 @@ export function ToolWorkspace({
         return <JsonFormatterTool lang={lang} />;
       case ToolId.PASSWORD_GENERATOR:
         return <PasswordGeneratorTool lang={lang} />;
+      case ToolId.BASE64_CONVERTER:
+        return <Base64ConverterTool lang={lang} />;
+      case ToolId.TEXT_DIFF:
+        return <TextDiffTool lang={lang} />;
+      case ToolId.ARABIC_TEXT_CLEANER:
+        return <ArabicTextCleanerTool lang={lang} />;
+      case ToolId.TIMESTAMP_CONVERTER:
+        return <TimestampConverterTool lang={lang} />;
     }
   };
 

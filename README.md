@@ -26,10 +26,18 @@
 ### 3. Text Tools | أدوات النصوص
 - **Word & Character Counter:** Live word, character, sentence, paragraph, and reading-time statistics.
 - **Text Formatter & Cleaner:** Remove extra spaces, strip empty lines, and change text capitalization.
+- **Text Diff & Compare:** Compare two text versions side-by-side or unified with syntax differences and line additions/deletions.
+- **Arabic Text Cleaner & Tashkeel Remover:** Strip Arabic diacritics (harakat), remove kashida (tatweel), and standardize characters.
 
 ### 4. Developer Tools | أدوات المطورين
 - **JSON Formatter & Validator:** Beautify, minify, validate JSON syntax with clear error messages, and copy with one click.
 - **Strong Password Generator:** Create random passwords locally with configurable length and character sets.
+- **Base64 Encoder & Decoder:** Encode/decode UTF-8 text and convert files/images directly to Base64 Data URLs.
+- **Unix Timestamp Converter:** Real-time epoch clock and bidirectional converter between timestamps and human-readable dates.
+
+### Modern Features & UX | مميزات إضافية
+- **Dark Mode Support:** Clean, eye-friendly light/dark mode switch with system default detection and local persistence.
+- **Favorites & Recent Tools:** Star favorite tools and quickly resume recently opened tools from the homepage.
 
 ### Guides | أدلة مفيدة
 - [How to compress a PDF on iPhone](https://lumixa-99t.pages.dev/guides/compress-pdf-on-iphone/)

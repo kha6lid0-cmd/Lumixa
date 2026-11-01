@@ -25,6 +25,10 @@ export enum ToolId {
   TEXT_FORMATTER = 'text-formatter',
   JSON_FORMATTER = 'json-formatter',
   PASSWORD_GENERATOR = 'password-generator',
+  BASE64_CONVERTER = 'base64-converter',
+  TEXT_DIFF = 'text-diff',
+  ARABIC_TEXT_CLEANER = 'arabic-text-cleaner',
+  TIMESTAMP_CONVERTER = 'timestamp-converter',
 }
 
 export enum StaticPageId {
@@ -58,7 +62,11 @@ export interface ToolDefinition {
     | 'ShieldCheck'
     | 'AlignLeft'
     | 'Type'
-    | 'Braces';
+    | 'Braces'
+    | 'Binary'
+    | 'GitCompare'
+    | 'Languages'
+    | 'Clock';
   featured?: boolean;
   en: LocalizedToolContent;
   ar: LocalizedToolContent;
