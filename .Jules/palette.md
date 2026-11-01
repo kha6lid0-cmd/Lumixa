@@ -1,0 +1,3 @@
+## 2025-11-01 - Nested Interactive Elements in Catalog Cards
+**Learning:** When action buttons (like a favorite star toggle) are placed inside an anchor card (`<a>`), `e.stopPropagation()` alone does not prevent the default browser link navigation across all event dispatch mechanics; `e.preventDefault()` must also be called. Furthermore, icon-only toggle buttons inside clickable cards require explicit, dynamic `aria-label`s and `focus-visible` outlines so keyboard and screen-reader users can discover and trigger them without unexpectedly activating the parent card.
+**Action:** Always pair `e.preventDefault()` with `e.stopPropagation()` for interactive buttons inside links, and provide accessible, state-aware `aria-label`s with `focus-visible` styling.

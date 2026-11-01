@@ -113,7 +113,10 @@ export default function App() {
   });
 
   const toggleFavorite = (id: ToolId, e?: React.MouseEvent) => {
-    if (e) e.stopPropagation();
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     setFavorites((prev) => {
       const next = prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id];
       try {
@@ -580,13 +583,15 @@ export default function App() {
                               <button
                                 type="button"
                                 onClick={(e) => toggleFavorite(tool.id, e)}
+                                aria-label={favorites.includes(tool.id) ? (isAr ? `إزالة ${content.name} من المفضلة` : `Remove ${content.name} from favorites`) : (isAr ? `إضافة ${content.name} إلى المفضلة` : `Add ${content.name} to favorites`)}
                                 title={favorites.includes(tool.id) ? (isAr ? 'إزالة من المفضلة' : 'Remove favorite') : (isAr ? 'إضافة إلى المفضلة' : 'Add to favorites')}
-                                className="p-1 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-amber-500 transition-colors"
+                                className="p-1 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-amber-500 transition-colors focus-visible:outline-2 focus-visible:outline-violet-600"
                               >
                                 <Star
                                   className={`w-3.5 h-3.5 ${
                                     favorites.includes(tool.id) ? 'fill-amber-400 text-amber-500' : ''
                                   }`}
+                                  aria-hidden="true"
                                 />
                               </button>
                             </div>
