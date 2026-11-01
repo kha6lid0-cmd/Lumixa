@@ -33,6 +33,11 @@ const PAGE_COPY: Record<Language, Record<StaticPageId, PageCopy>> = {
             'Images, PDFs, text, JSON, and QR code data are processed locally in your browser. LUMIXA does not receive or store the files you select for the tools. Closing the page or clearing browser data removes temporary processing data created by the browser.',
         },
         {
+          heading: 'How local processing works',
+          body:
+            'When a tool supports local processing, your browser reads the selected file, performs the requested operation on your device, and creates the result for download. The exact behavior can depend on the browser, device memory, file type, and file size. If a task cannot be completed, the page should show an error rather than promise a result that was not created.',
+        },
+        {
           heading: 'Information stored in your browser',
           body:
             'LUMIXA stores your language preference in localStorage so the interface can remember English or Arabic on your next visit. This preference stays on your device and is not sent to LUMIXA.',
@@ -46,6 +51,16 @@ const PAGE_COPY: Record<Language, Record<StaticPageId, PageCopy>> = {
           heading: 'Advertising and future changes',
           body:
             'Reserved advertising spaces may be used in the future. If advertising, analytics, or other external services are added, this policy will be updated before those services are introduced.',
+        },
+        {
+          heading: 'Cookies and choices',
+          body:
+            'The current interface stores only the selected language preference in your browser. If advertising or analytics later require cookies, pixels, or similar technologies, LUMIXA will explain their purpose, providers, and available choices in this policy before relying on them.',
+        },
+        {
+          heading: 'Data retention and deletion',
+          body:
+            'LUMIXA does not maintain an account-based file library for the core tools. Downloaded results remain under your control on your device. You can remove local preferences and temporary browser data through your browser settings.',
         },
         {
           heading: 'Questions about privacy',
@@ -101,6 +116,11 @@ const PAGE_COPY: Record<Language, Record<StaticPageId, PageCopy>> = {
             'The platform includes image compression, resizing and conversion, images-to-PDF, QR generation, PDF merging and splitting, text cleanup, word counting, and JSON formatting and validation.',
         },
         {
+          heading: 'Who the platform is for',
+          body:
+            'LUMIXA is intended for students, independent creators, office workers, developers, and anyone who needs a quick browser-based file utility. It is designed for everyday tasks such as preparing an attachment, converting an image, checking JSON, or creating a QR code.',
+        },
+        {
           heading: 'Built for English and Arabic',
           body:
             'Every main experience supports English and Arabic, including LTR and RTL layouts. The responsive interface is designed for iPhone, Android, tablets, and desktop browsers.',
@@ -114,6 +134,11 @@ const PAGE_COPY: Record<Language, Record<StaticPageId, PageCopy>> = {
           heading: 'Open development',
           body:
             'The project is published on GitHub so its source, improvements, and issue discussions can be reviewed openly. Suggestions and bug reports are welcome.',
+        },
+        {
+          heading: 'Quality and limitations',
+          body:
+            'Tools are tested across common modern browsers, but results can vary by file structure, browser support, device memory, and input size. Always open and review an important output before submitting, sharing, or deleting the original.',
         },
       ],
       back: 'Back to LUMIXA',
@@ -134,6 +159,11 @@ const PAGE_COPY: Record<Language, Record<StaticPageId, PageCopy>> = {
           heading: 'Request a feature',
           body:
             'Describe the task you want LUMIXA to support, the input and output formats you need, and whether the feature should work entirely in the browser.',
+        },
+        {
+          heading: 'What to include in a useful report',
+          body:
+            'A useful report includes the tool name, device model, operating system, browser version, approximate file type and size, the steps you followed, and the visible error. Use a redacted example whenever possible and never attach private documents, passwords, or API keys.',
         },
         {
           heading: 'Project repository',
@@ -158,6 +188,11 @@ const PAGE_COPY: Record<Language, Record<StaticPageId, PageCopy>> = {
             'تتم معالجة الصور وملفات PDF والنصوص وبيانات JSON ورموز QR محلياً داخل متصفحك. لا تستقبل LUMIXA الملفات التي تختارها للأدوات ولا تخزنها على خوادمها. يؤدي إغلاق الصفحة أو مسح بيانات المتصفح إلى إزالة بيانات المعالجة المؤقتة التي أنشأها المتصفح.',
         },
         {
+          heading: 'كيف تعمل المعالجة المحلية؟',
+          body:
+            'عندما تدعم الأداة المعالجة المحلية، يقرأ المتصفح الملف المحدد وينفذ العملية على جهازك ثم ينشئ النتيجة لتنزيلها. قد تختلف النتيجة حسب المتصفح وذاكرة الجهاز ونوع الملف وحجمه. إذا تعذر تنفيذ المهمة، يفترض أن تعرض الصفحة رسالة خطأ بدلاً من الوعد بنتيجة لم يتم إنشاؤها.',
+        },
+        {
           heading: 'المعلومات المخزنة في متصفحك',
           body:
             'تخزن LUMIXA تفضيل اللغة في localStorage حتى تتذكر الواجهة اختيار العربية أو الإنجليزية في زيارتك القادمة. يبقى هذا التفضيل على جهازك ولا يتم إرساله إلى LUMIXA.',
@@ -171,6 +206,16 @@ const PAGE_COPY: Record<Language, Record<StaticPageId, PageCopy>> = {
           heading: 'الإعلانات والتغييرات المستقبلية',
           body:
             'قد يتم استخدام المساحات الإعلانية المحجوزة مستقبلاً. إذا تمت إضافة إعلانات أو تحليلات أو خدمات خارجية أخرى، فسيتم تحديث هذه السياسة قبل تشغيلها.',
+        },
+        {
+          heading: 'ملفات تعريف الارتباط والخيارات',
+          body:
+            'تخزن الواجهة الحالية تفضيل اللغة فقط داخل متصفحك. إذا احتاجت الإعلانات أو التحليلات مستقبلاً إلى ملفات تعريف ارتباط أو تقنيات مشابهة، فستوضح LUMIXA الغرض منها ومزوديها والخيارات المتاحة لك في هذه السياسة قبل الاعتماد عليها.',
+        },
+        {
+          heading: 'الاحتفاظ بالبيانات وحذفها',
+          body:
+            'لا تنشئ LUMIXA مكتبة ملفات مرتبطة بحساب في الأدوات الأساسية. تبقى النتائج التي تنزلها تحت سيطرتك على جهازك، ويمكنك حذف التفضيلات والبيانات المؤقتة من إعدادات المتصفح.',
         },
         {
           heading: 'الاستفسارات المتعلقة بالخصوصية',
@@ -226,6 +271,11 @@ const PAGE_COPY: Record<Language, Record<StaticPageId, PageCopy>> = {
             'تضم المنصة ضغط الصور وتغيير أبعادها وتحويل صيغها، تحويل الصور إلى PDF، إنشاء رموز QR، دمج وتقسيم ملفات PDF، تنظيف النصوص، عد الكلمات، وتنسيق JSON والتحقق منه.',
         },
         {
+          heading: 'لمن صُممت المنصة؟',
+          body:
+            'صُممت LUMIXA للطلاب والمستقلين وموظفي المكاتب والمطورين وكل من يحتاج إلى أداة ملفات سريعة من المتصفح. يمكن استخدامها لمهام يومية مثل تجهيز مرفق أو تحويل صورة أو فحص JSON أو إنشاء رمز QR.',
+        },
+        {
           heading: 'مصممة للعربية والإنجليزية',
           body:
             'تدعم التجربة الأساسية العربية والإنجليزية مع اتجاهي RTL وLTR. كما صُممت الواجهة المتجاوبة لهواتف iPhone وAndroid والأجهزة اللوحية والحواسيب.',
@@ -239,6 +289,11 @@ const PAGE_COPY: Record<Language, Record<StaticPageId, PageCopy>> = {
           heading: 'تطوير مفتوح',
           body:
             'المشروع منشور على GitHub حتى يمكن مراجعة مصدره وتطويراته ومناقشة مشكلاته بشكل مفتوح. نرحب بالاقتراحات وتقارير الأخطاء.',
+        },
+        {
+          heading: 'الجودة والحدود',
+          body:
+            'يتم اختبار الأدوات على المتصفحات الحديثة الشائعة، لكن النتائج قد تختلف حسب بنية الملف ودعم المتصفح وذاكرة الجهاز وحجم الإدخال. افتح دائماً الملف الناتج وراجعه قبل إرساله أو مشاركته أو حذف النسخة الأصلية.',
         },
       ],
       back: 'العودة إلى LUMIXA',
@@ -259,6 +314,11 @@ const PAGE_COPY: Record<Language, Record<StaticPageId, PageCopy>> = {
           heading: 'طلب ميزة جديدة',
           body:
             'اشرح المهمة التي تريد أن تدعمها LUMIXA، وصيغ الإدخال والإخراج المطلوبة، وما إذا كان من المهم أن تعمل الميزة بالكامل داخل المتصفح.',
+        },
+        {
+          heading: 'ما الذي يجعل البلاغ مفيداً؟',
+          body:
+            'اذكر اسم الأداة وطراز الجهاز ونظام التشغيل وإصدار المتصفح ونوع الملف وحجمه التقريبي والخطوات التي اتبعتها ورسالة الخطأ الظاهرة. استخدم مثالاً منزوع البيانات الشخصية قدر الإمكان، ولا ترفق مستندات خاصة أو كلمات مرور أو مفاتيح API.',
         },
         {
           heading: 'مستودع المشروع',
